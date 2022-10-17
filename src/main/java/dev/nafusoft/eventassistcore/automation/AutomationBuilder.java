@@ -148,8 +148,9 @@ public class AutomationBuilder {
                 actionOptionsMap.putIfAbsent(field, null); // nullを許容するフィールドの場合はnullを許容する
             } else {
                 // Check if the value's object type matches the option's type
-                if (!component.getType().isInstance(value))
-                    throw new IllegalArgumentException("The value's object type does not match the option's type.");
+                if (!checkType(component.getType(), value))
+                    throw new IllegalArgumentException("The value's object type does not match the option's type. " +
+                            "(value: " + value.getClass().getName() + ", option: " + component.getType().getName() + ")");
 
                 actionOptionsMap.putIfAbsent(field, value);
             }
@@ -172,6 +173,23 @@ public class AutomationBuilder {
             return !(component.getType().isPrimitive() || Arrays.stream(component.getAnnotations()).noneMatch(a ->
                     a.annotationType().equals(org.jetbrains.annotations.Nullable.class)
                             || a.annotationType().equals(javax.annotation.Nullable.class)));
+        }
+
+        private boolean checkType(Class<?> type, Object value) {
+            if (type.isPrimitive()) {
+                if (value == null) return false;
+                if (type.equals(boolean.class)) return value instanceof Boolean;
+                if (type.equals(byte.class)) return value instanceof Byte;
+                if (type.equals(short.class)) return value instanceof Short;
+                if (type.equals(int.class)) return value instanceof Integer;
+                if (type.equals(long.class)) return value instanceof Long;
+                if (type.equals(float.class)) return value instanceof Float;
+                if (type.equals(double.class)) return value instanceof Double;
+                if (type.equals(char.class)) return value instanceof Character;
+            } else {
+                return type.isInstance(value);
+            }
+            return false;
         }
     }
 }

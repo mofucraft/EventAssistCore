@@ -18,12 +18,14 @@ package dev.nafusoft.eventassistcore.automation.actions;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.WritableTypeId;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.nafusoft.eventassistcore.automation.ActionOptions;
 import lombok.val;
@@ -35,6 +37,8 @@ import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
+import static com.fasterxml.jackson.core.JsonToken.START_OBJECT;
 
 @JsonSerialize(using = ItemGiveActionOptions.ItemGiveActionOptionsSerializer.class)
 @JsonDeserialize(using = ItemGiveActionOptions.ItemGiveActionOptionsDeserializer.class)
@@ -51,6 +55,14 @@ public record ItemGiveActionOptions(ItemStack itemStack) implements ActionOption
         }
 
         @Override
+        public void serializeWithType(ItemGiveActionOptions value, JsonGenerator gen, SerializerProvider serializers, TypeSerializer typeSer) throws IOException {
+            WritableTypeId typeId = typeSer.typeId(value, START_OBJECT);
+            typeSer.writeTypePrefix(gen, typeId);
+            serialize(value, gen, serializers);
+            typeSer.writeTypeSuffix(gen, typeId);
+        }
+
+        @Override
         public void serialize(ItemGiveActionOptions value, JsonGenerator gen, SerializerProvider provider) throws IOException {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
@@ -58,9 +70,7 @@ public record ItemGiveActionOptions(ItemStack itemStack) implements ActionOption
             dataOutput.close();
             val encodedItem = Base64Coder.encodeLines(outputStream.toByteArray());
 
-            gen.writeStartObject();
             gen.writeStringField("itemStack", encodedItem);
-            gen.writeEndObject();
         }
     }
 

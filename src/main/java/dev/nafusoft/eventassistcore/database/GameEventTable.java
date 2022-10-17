@@ -19,6 +19,7 @@ package dev.nafusoft.eventassistcore.database;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import dev.nafusoft.eventassistcore.gameevent.DefaultGameEvent;
 import dev.nafusoft.eventassistcore.gameevent.EventOptions;
 import dev.nafusoft.eventassistcore.gameevent.GameEvent;
@@ -38,7 +39,7 @@ import java.util.logging.Level;
 import java.util.stream.Collectors;
 
 public class GameEventTable extends DatabaseTable {
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper().disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
 
     protected GameEventTable(@Nullable String prefix, @NotNull DatabaseConnector connector) {
         super(prefix, "events", connector);

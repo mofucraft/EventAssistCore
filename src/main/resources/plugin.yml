@@ -1,0 +1,8 @@
+name: EventAssistCore
+version: '${version}'
+main: dev.nafusoft.eventassistcore.EventAssistCore
+api-version: 1.19
+prefix: EventAssist
+authors: [ Nafu Satsuki ]
+description: Assist tool to manage events held in the game.
+website: https://nafusoft.dev/

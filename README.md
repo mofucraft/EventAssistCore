@@ -11,7 +11,7 @@ event.
 ## Requirements
 
 - Java 17 or later (**Required**)
-- Paper 1.19 ~ (Paper 1.19 Tested) [**Not Support Spigot**]
+- Spigot 1.19 ~ (Paper 1.19 Tested)
 
 ## How to use
 

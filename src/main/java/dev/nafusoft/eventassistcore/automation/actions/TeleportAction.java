@@ -26,7 +26,7 @@ import java.util.Objects;
 
 public class TeleportAction extends AutomationAction {
 
-    protected TeleportAction(@JsonProperty("options") ActionOptions options) {
+    public TeleportAction(@JsonProperty("options") ActionOptions options) {
         super(options);
     }
 

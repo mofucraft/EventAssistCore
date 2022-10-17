@@ -165,7 +165,15 @@ public class AutomationBuilder {
          */
         public Map<String, Class<?>> getOptions() {
             return options.values().stream()
-                    .collect(Collectors.toMap(RecordComponent::getName, RecordComponent::getType));
+                    .collect(Collectors.toMap(RecordComponent::getName, RecordComponent::getType, (a, b) -> b, LinkedHashMap::new));
+        }
+
+        public Class<? extends AutomationAction> getActionClass() {
+            return actionClass;
+        }
+
+        public Class<? extends ActionOptions> getOptionsClass() {
+            return optionsClass;
         }
 
 

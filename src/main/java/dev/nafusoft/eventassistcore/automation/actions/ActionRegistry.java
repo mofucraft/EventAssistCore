@@ -21,7 +21,7 @@ import dev.nafusoft.eventassistcore.automation.EventAutomation;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -30,7 +30,7 @@ import java.util.Objects;
  * ActionRegistry holds a set of actions and options that can be incorporated into {@link EventAutomation EventAutomation}.
  */
 public final class ActionRegistry {
-    private final Map<Class<? extends AutomationAction>, Class<? extends ActionOptions>> actions = new HashMap();
+    private final Map<Class<? extends AutomationAction>, Class<? extends ActionOptions>> actions = new LinkedHashMap<>();
 
     /**
      * Register an action and its options.

@@ -17,6 +17,7 @@
 package dev.nafusoft.eventassistcore.automation.actions;
 
 import dev.nafusoft.eventassistcore.automation.ActionOptions;
+import dev.nafusoft.eventassistcore.automation.OptionDescription;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 
@@ -29,9 +30,13 @@ import org.bukkit.SoundCategory;
  * @param volume        Volume of the sound to play.
  * @param pitch         Pitch of the sound to play.
  */
-public record SoundPlayActionOptions(String soundType, String soundCategory,
-                                     String location, float volume,
-                                     float pitch) implements ActionOptions {
+public record SoundPlayActionOptions(
+        @OptionDescription("Check! https://papermc.io/javadocs/paper/1.19/org/bukkit/Sound.html") String soundType,
+        @OptionDescription("Check! https://papermc.io/javadocs/paper/1.19/org/bukkit/SoundCategory.html") String soundCategory,
+        @OptionDescription("Location to play sound. (Format: World, LocationX, LocationY, LocationZ)") String location,
+        float volume,
+        float pitch
+) implements ActionOptions {
 
     public Sound getSoundType() {
         return Sound.valueOf(soundType);

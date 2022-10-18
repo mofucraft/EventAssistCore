@@ -17,7 +17,14 @@
 package dev.nafusoft.eventassistcore.automation.actions;
 
 import dev.nafusoft.eventassistcore.automation.ActionOptions;
+import dev.nafusoft.eventassistcore.automation.OptionDescription;
 
-public record TitleShowActionOptions(String title, String subTitle, String titleColorName,
-                                     String subTitleColorName) implements ActionOptions {
+public record TitleShowActionOptions(
+        String title,
+        String subTitle,
+        @OptionDescription("Can use: BLACK, DARK_BLUE, DARK_GREEN, DARK_AQUA, DARK_RED, DARK_PURPLE, GOLD, GRAY, DARK_GRAY, BLUE, GREEN, AQUA, RED, LIGHT_PURPLE, YELLOW, WHITE")
+        String titleColorName,
+        @OptionDescription("Can use: BLACK, DARK_BLUE, DARK_GREEN, DARK_AQUA, DARK_RED, DARK_PURPLE, GOLD, GRAY, DARK_GRAY, BLUE, GREEN, AQUA, RED, LIGHT_PURPLE, YELLOW, WHITE")
+        String subTitleColorName
+) implements ActionOptions {
 }

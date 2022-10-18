@@ -77,8 +77,9 @@ public final class EventAssistCore extends JavaPlugin {
         }
 
         // Initialize actions
-        automationManager.getActionRegistry().registerAction(MessageSendAction.class, MessageSendActionOptions.class);
+        automationManager.getActionRegistry().registerAction(CommandExecuteAction.class, CommandExecuteActionOptions.class);
         automationManager.getActionRegistry().registerAction(TitleShowAction.class, TitleShowActionOptions.class);
+        automationManager.getActionRegistry().registerAction(MessageSendAction.class, MessageSendActionOptions.class);
         automationManager.getActionRegistry().registerAction(SoundPlayAction.class, SoundPlayActionOptions.class);
         automationManager.getActionRegistry().registerAction(ItemGiveAction.class, ItemGiveActionOptions.class);
         automationManager.getActionRegistry().registerAction(TeleportAction.class, EmptyActionOptions.class);

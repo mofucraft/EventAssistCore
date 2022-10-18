@@ -168,12 +168,35 @@ public class AutomationBuilder {
                     .collect(Collectors.toMap(RecordComponent::getName, RecordComponent::getType, (a, b) -> b, LinkedHashMap::new));
         }
 
-        public Class<? extends AutomationAction> getActionClass() {
+        /**
+         * Returns the class of the action you are building.
+         *
+         * @return the class of the action you are building.
+         */
+        public @NotNull Class<? extends AutomationAction> getActionClass() {
             return actionClass;
         }
 
-        public Class<? extends ActionOptions> getOptionsClass() {
+        /**
+         * Returns the {@link ActionOptions} class that will be paired with the action you are building.
+         *
+         * @return the {@link ActionOptions} class that will be paired with the action you are building.
+         */
+        public @NotNull Class<? extends ActionOptions> getOptionsClass() {
             return optionsClass;
+        }
+
+        /**
+         * Returns a description attached to the option.
+         *
+         * @param field Option name to get description
+         * @return a description attached to the option.
+         */
+        public @NotNull String getOptionDescription(@NotNull String field) {
+            Objects.requireNonNull(field);
+
+            val description = options.get(field).getAnnotation(OptionDescription.class);
+            return description != null ? description.value() : "";
         }
 
 

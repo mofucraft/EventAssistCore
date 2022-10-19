@@ -79,7 +79,7 @@ public final class EventAutomationManager extends EventAutomationTable {
     public @Nullable EventAutomation getStartAutomation(@NotNull UUID eventId) {
         try {
             String[] automations = getById(eventId);
-            return safeReadJson(automations[0], eventId);
+            return readJsonSafe(automations[0], eventId);
         } catch (SQLException e) {
             PluginLogger.log(Level.WARNING, "Failed to get event data.", e);
             return null;
@@ -89,7 +89,7 @@ public final class EventAutomationManager extends EventAutomationTable {
     public @Nullable EventAutomation getEndAutomation(@NotNull UUID eventId) {
         try {
             String[] automations = getById(eventId);
-            return safeReadJson(automations[1], eventId);
+            return readJsonSafe(automations[1], eventId);
         } catch (SQLException e) {
             PluginLogger.log(Level.WARNING, "Failed to get event data.", e);
             return null;
@@ -112,7 +112,7 @@ public final class EventAutomationManager extends EventAutomationTable {
     private static final Gson gson = new Gson();
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    private @Nullable EventAutomation safeReadJson(@Nullable String automationJson, @NotNull UUID eventId) {
+    private @Nullable EventAutomation readJsonSafe(@Nullable String automationJson, @NotNull UUID eventId) {
         if (StringUtils.isEmpty(automationJson))
             return null;
 

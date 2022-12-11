@@ -50,7 +50,7 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre' // Override dependency.
 
     implementation 'com.zaxxer:HikariCP:5.0.1'
-    implementation 'mysql:mysql-connector-java:8.0.30'
+    implementation 'mysql:mysql-connector-java:8.0.31'
     implementation 'org.mariadb.jdbc:mariadb-java-client:3.1.0'
 }
 

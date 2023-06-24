@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NAFU_at
+ * Copyright 2023 NAFU_at
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,12 +34,12 @@ public final class EventAssistAPI {
     private final EventAssistCore eventAssist;
 
 
-    public static EventAssistAPI getInstance() {
-        return InstanceHolder.INSTANCE;
-    }
-
     public EventAssistAPI(EventAssistCore eventAssist) {
         this.eventAssist = eventAssist;
+    }
+
+    public static EventAssistAPI getInstance() {
+        return InstanceHolder.INSTANCE;
     }
 
     public GameEventManager getEventManager() {

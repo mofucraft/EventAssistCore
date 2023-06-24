@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NAFU_at
+ * Copyright 2023 NAFU_at
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,6 +32,10 @@ public class GameEventPlayerEntryEvent extends GameEventEvent implements Cancell
         this.player = player;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
+
     public Player getPlayer() {
         return player;
     }
@@ -44,10 +48,6 @@ public class GameEventPlayerEntryEvent extends GameEventEvent implements Cancell
     @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
-    }
-
-    public static HandlerList getHandlerList() {
-        return handlers;
     }
 
     @Override

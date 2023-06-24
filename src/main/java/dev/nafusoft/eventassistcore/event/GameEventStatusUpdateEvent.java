@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NAFU_at
+ * Copyright 2023 NAFU_at
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,17 +32,16 @@ public class GameEventStatusUpdateEvent extends GameEventEvent {
         this.newStatus = newStatus;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
+
     public GameEventStatus getOldStatus() {
         return oldStatus;
     }
 
     public GameEventStatus getNewStatus() {
         return newStatus;
-    }
-
-
-    public static HandlerList getHandlerList() {
-        return handlers;
     }
 
     @Override

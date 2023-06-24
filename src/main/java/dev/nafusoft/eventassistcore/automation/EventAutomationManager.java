@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NAFU_at
+ * Copyright 2023 NAFU_at
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,8 @@ import java.util.UUID;
 import java.util.logging.Level;
 
 public final class EventAutomationManager extends EventAutomationTable {
+    private static final Gson gson = new Gson();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
     private final ActionRegistry actionRegistry;
 
     public EventAutomationManager(@Nullable String prefix, @NotNull DatabaseConnector connector) throws SQLException {
@@ -96,7 +98,6 @@ public final class EventAutomationManager extends EventAutomationTable {
         }
     }
 
-
     void updateAutomation(@NotNull UUID eventId, @NotNull EventAutomation automation, AutomationType type) {
         try {
             if (type == AutomationType.START_AUTOMATION)
@@ -107,10 +108,6 @@ public final class EventAutomationManager extends EventAutomationTable {
             PluginLogger.log(Level.WARNING, "Failed to update automation.", e);
         }
     }
-
-
-    private static final Gson gson = new Gson();
-    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     private @Nullable EventAutomation readJsonSafe(@Nullable String automationJson, @NotNull UUID eventId) {
         if (StringUtils.isEmpty(automationJson))

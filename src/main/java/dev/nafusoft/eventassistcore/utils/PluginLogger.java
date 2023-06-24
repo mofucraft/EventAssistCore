@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NAFU_at
+ * Copyright 2023 NAFU_at
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,16 +38,20 @@ public final class PluginLogger {
         return logger.getResourceBundle();
     }
 
+    public static void setResourceBundle(ResourceBundle bundle) {
+        logger.setResourceBundle(bundle);
+    }
+
     public static String getResourceBundleName() {
         return logger.getResourceBundleName();
     }
 
-    public static void setFilter(Filter newFilter) throws SecurityException {
-        logger.setFilter(newFilter);
-    }
-
     public static Filter getFilter() {
         return logger.getFilter();
+    }
+
+    public static void setFilter(Filter newFilter) throws SecurityException {
+        logger.setFilter(newFilter);
     }
 
     public static void log(LogRecord record) {
@@ -218,12 +222,12 @@ public final class PluginLogger {
         logger.finest(msgSupplier);
     }
 
-    public static void setLevel(Level newLevel) throws SecurityException {
-        logger.setLevel(newLevel);
-    }
-
     public static Level getLevel() {
         return logger.getLevel();
+    }
+
+    public static void setLevel(Level newLevel) throws SecurityException {
+        logger.setLevel(newLevel);
     }
 
     public static boolean isLoggable(Level level) {
@@ -246,16 +250,12 @@ public final class PluginLogger {
         return logger.getHandlers();
     }
 
-    public static void setUseParentHandlers(boolean useParentHandlers) {
-        logger.setUseParentHandlers(useParentHandlers);
-    }
-
     public static boolean getUseParentHandlers() {
         return logger.getUseParentHandlers();
     }
 
-    public static void setResourceBundle(ResourceBundle bundle) {
-        logger.setResourceBundle(bundle);
+    public static void setUseParentHandlers(boolean useParentHandlers) {
+        logger.setUseParentHandlers(useParentHandlers);
     }
 
     public static Logger getParent() {

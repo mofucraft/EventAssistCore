@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NAFU_at
+ * Copyright 2023 NAFU_at
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -233,11 +233,11 @@ public class GameEventTable extends DatabaseTable {
                 eventName,
                 eventDescription,
                 eventOwner,
-                eventStatus,
                 eventStartTime,
                 eventEndTime,
                 eventLocation,
                 entrant,
-                eventOptions);
+                eventOptions,
+                eventStatus);
     }
 }

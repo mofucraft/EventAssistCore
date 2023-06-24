@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 NAFU_at
+ * Copyright 2023 NAFU_at
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,12 +38,12 @@ public class DefaultGameEvent implements GameEvent {
     private final String eventName;
     private final String eventDescription;
     private final UUID eventOwner;
-    private GameEventStatus eventStatus;
     private final long eventStartTime;
     private final long eventEndTime;
     private final Location eventLocation;
     private final List<UUID> entrant;
     private final EventOptions eventOptions;
+    private GameEventStatus eventStatus;
 
     @Override
     public List<UUID> getEntrant() {
